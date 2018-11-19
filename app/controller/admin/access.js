@@ -5,22 +5,26 @@ const Controller = require('egg').Controller;
 class AccessController extends Controller {
   async index() {
 
-    this.ctx.body='权限列表';
-    
-  } 
+        
+    await this.ctx.render('admin/access/index');
 
-  async add() {
-
-
-    this.ctx.body='权限增加'
-    
-  } 
-  async edit() {
+ 
+} 
 
 
-    this.ctx.body='权限编辑'
-    
-  } 
+async add() {
+
+
+ await this.ctx.render('admin/access/add');
+ 
+} 
+
+async edit() {
+
+
+ await this.ctx.render('admin/access/edit');
+ 
+} 
 }
 
 module.exports = AccessController;
