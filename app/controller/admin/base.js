@@ -7,24 +7,25 @@
 const Controller = require('egg').Controller;
 
 class BaseController extends Controller {
-  async success(redirectUrl) {
+  async success(redirectUrl,message) {
 
     // this.ctx.body='成功';
 
     await this.ctx.render('admin/public/success',{
-
-      redirectUrl:redirectUrl
+      redirectUrl:redirectUrl,
+      message:message||'操作成功!'
     });
 
 
   }
 
-  async error(redirectUrl) {
+  async error(redirectUrl,message) {
 
     // this.ctx.body='成功';
 
     await this.ctx.render('admin/public/error',{
-      redirectUrl:redirectUrl
+      redirectUrl:redirectUrl,
+      message:message||'操作成功!'
     });
 
   }

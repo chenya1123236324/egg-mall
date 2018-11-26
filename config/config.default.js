@@ -16,7 +16,12 @@ module.exports = appInfo => {
   
 
   // add your config here
-  config.middleware = [];
+  config.middleware = ['adminauth'];
+
+  config.adminauth={
+    match: '/admin',
+  }
+
 
   //多模板引擎配置
   config.view = {
@@ -24,6 +29,14 @@ module.exports = appInfo => {
       '.html': 'ejs',
 
       '.nj': 'nunjucks'
+    },
+  };
+
+  //配置mongose连接mongodb数据库
+  exports.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1/egg-mall',
+      options: {}
     },
   };
   

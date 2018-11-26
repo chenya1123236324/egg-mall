@@ -5,11 +5,14 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+
+  // var adminauth=app.  .adminauth()
+
   router.get('/', controller.home.index);
 
   router.get('/admin/login', controller.admin.login.index);
 
-  router.get('/admin/doLogin', controller.admin.login.doLogin);
+  router.post('/admin/doLogin', controller.admin.login.doLogin);
 
 //验证码
   router.get('/admin/verify', controller.admin.base.verify);
