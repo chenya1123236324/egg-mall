@@ -4,6 +4,8 @@
 
 var svgCaptcha = require('svg-captcha'); //引入验证
 
+var md5 = require('md5');
+
 const Service = require('egg').Service;
 
 class ToolsService extends Service {
@@ -21,6 +23,17 @@ class ToolsService extends Service {
     this.ctx.session.code = captcha.text;   /*验证码的信息*/
 
     return captcha;
+  }
+  async md5(str){
+
+    return md5(str);
+  }
+  async getTime(){
+
+    var d=new Date();
+
+    return d.getTime();
+
   }
  
 }
