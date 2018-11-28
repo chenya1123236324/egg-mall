@@ -38,10 +38,13 @@ class BaseController extends Controller {
     this.ctx.response.type = 'image/svg+xml';   /*指定返回的类型*/
 
     this.ctx.body=captcha.data;      /*给页面返回一张图片*/
+  }
 
-
+  //封装一个删除方法
+  async delete() {
 
   }
+
 }
 
 module.exports = BaseController;
