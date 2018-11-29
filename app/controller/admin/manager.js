@@ -18,12 +18,11 @@ class ManagerController extends BaseController {
 
       }      
     }])
-
     await this.ctx.render('admin/manager/index',{
 
       list:result
     });
-
+    
   } 
 
 
@@ -71,10 +70,62 @@ class ManagerController extends BaseController {
 
   async edit() {
 
-    //获取角色
+    //获取编辑的数据
+
+    var id=this.ctx.request.query.id;
+
+    var adminResult=await this.ctx.model.Admin.find({"_id":id});   
+    
+    console.log(adminResult);
+
+    //获取角色    
+    var roleResult=await this.ctx.model.Role.find();
+   
+    await this.ctx.render('admin/manager/edit',{
+
+      adminResult:adminResult[0],
+
+      roleResult:roleResult
+    });
+  } 
+
+  
+  async doEdit() {
+   
+    // console.log(this.ctx.request.body);
+
+    var id=this.ctx.request.body.id;
+    var password=this.ctx.request.body.password;
+    var mobile=this.ctx.request.body.mobile;
+    var email=this.ctx.request.body.email;
+    var role_id=this.ctx.request.body.role_id;    
+
+    if(password){
+      //修改密码
+      password=await this.service.tools.md5(password);
+      await this.ctx.model.Admin.updateOne({"_id":id},{
+        password,
+        mobile,
+        email,
+        role_id
+      })
+
+    }else{
+
+      //不修改密码
+      await this.ctx.model.Admin.updateOne({"_id":id},{
+        mobile,
+        email,
+        role_id
+      })
+
+    }
 
 
-    await this.ctx.render('admin/manager/edit');
+    await this.success('/admin/manager','修改用户信息成功')
+
+
+
   } 
 }
 
